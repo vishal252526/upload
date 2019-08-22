@@ -1,0 +1,13 @@
+ @RequestMapping(value="/upload", method=RequestMethod.POST,consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+      public ResponseEntity<Object>upload(@RequestParam("file")MultipartFile file) throws IOException
+      { 
+    	  
+    	File ConvertFile=new File("C:\\Users\\761514\\Desktop\\file from spring"+file.getOriginalFilename());
+        ConvertFile.createNewFile();
+        FileOutputStream fout=new  FileOutputStream(ConvertFile);
+        fout.write(file.getBytes());
+        fout.close();
+     	System.out.println("success");  
+    	return new ResponseEntity<Object>("fileUploaded",HttpStatus.OK);
+   
+      }
